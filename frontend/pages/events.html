@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenVale Society — Events</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <div class="navbar-logo-icon">G</div>
+        <div class="navbar-logo-text">
+          <span class="name">GreenVale Society</span>
+          <span class="sub">Est. 2002 · Community First</span>
+        </div>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar-links" id="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="facilities.html">Facilities</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="news.html">News & Stories</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="btn-login">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+
+```
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <span class="section-tag">Events Calendar</span>
+    <h1>What's Happening?</h1>
+    <p>Browse upcoming events, click a date on the calendar, and book your spot in seconds.</p>
+  </div>
+</div>
+
+<!-- EVENTS MAIN SECTION -->
+<section class="section">
+  <div class="container">
+
+    <!-- Search Bar -->
+    <div class="event-search fade-in">
+      <input type="text" id="event-search-input" placeholder="🔍  Search events by name or type…" />
+      <button id="event-search-btn">Search</button>
+    </div>
+
+    <div class="events-layout">
+
+      <!-- LEFT: Calendar -->
+      <div class="fade-in">
+        <div class="calendar-widget">
+          <div class="calendar-header">
+            <button class="cal-nav" id="cal-prev">‹</button>
+            <h3 id="cal-title">April 2026</h3>
+            <button class="cal-nav" id="cal-next">›</button>
+          </div>
+          <div class="calendar-grid">
+            <div class="calendar-days-header">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span>
+              <span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div class="calendar-dates" id="cal-dates">
+              <!-- Dates injected by main.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div style="margin-top:16px; padding:16px; background:var(--white); border-radius:var(--radius-md); box-shadow:var(--shadow-sm);">
+          <p style="font-size:0.8rem; font-weight:600; color:var(--slate-muted); margin-bottom:10px;">LEGEND</p>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--slate-light);">
+              <span style="width:8px;height:8px;border-radius:50%;background:var(--terracotta);display:inline-block;"></span> Has Event
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--slate-light);">
+              <span style="width:20px;height:20px;border-radius:6px;background:var(--sage-pale);display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--sage);font-weight:600;">10</span> Today
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--slate-light);">
+              <span style="width:20px;height:20px;border-radius:6px;background:var(--slate);display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;color:white;font-weight:600;">5</span> Selected
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Event Cards -->
+      <div>
+        <p class="featured-label fade-in">⭐ Upcoming Events</p>
+        <div class="events-list">
+
+          <div class="event-card fade-in"
+               data-title="Spring Garden Festival" data-type="Festival"
+               data-event-id="2026-04-12">
+            <div class="event-date-box">
+              <div class="day">12</div>
+              <div class="month">Apr</div>
+            </div>
+            <div class="event-info">
+              <h4>🌸 Spring Garden Festival</h4>
+              <p>9:00 AM · Society Garden · Open to all residents and guests</p>
+              <div class="event-tags">
+                <span class="event-tag featured">⭐ Featured</span>
+                <span class="event-tag">Festival</span>
+                <span class="event-tag">All Ages</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card fade-in fade-in-delay-1"
+               data-title="Children's Sports Day" data-type="Sports"
+               data-event-id="2026-04-18">
+            <div class="event-date-box">
+              <div class="day">18</div>
+              <div class="month">Apr</div>
+            </div>
+            <div class="event-info">
+              <h4>⚽ Children's Sports Day</h4>
+              <p>8:00 AM · Playground · For children aged 5–15</p>
+              <div class="event-tags">
+                <span class="event-tag">Sports</span>
+                <span class="event-tag">Children</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card fade-in fade-in-delay-2"
+               data-title="Yoga & Wellness Session" data-type="Wellness"
+               data-event-id="2026-04-22">
+            <div class="event-date-box">
+              <div class="day">22</div>
+              <div class="month">Apr</div>
+            </div>
+            <div class="event-info">
+              <h4>🧘 Yoga & Wellness Session</h4>
+              <p>6:30 AM · Terrace Garden · Free for all residents</p>
+              <div class="event-tags">
+                <span class="event-tag">Wellness</span>
+                <span class="event-tag">Free</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card fade-in fade-in-delay-3"
+               data-title="Cultural Night" data-type="Culture"
+               data-event-id="2026-04-28">
+            <div class="event-date-box">
+              <div class="day">28</div>
+              <div class="month">Apr</div>
+            </div>
+            <div class="event-info">
+              <h4>🎭 Cultural Night</h4>
+              <p>6:00 PM · Main Hall · Performances & traditional food</p>
+              <div class="event-tags">
+                <span class="event-tag featured">⭐ Featured</span>
+                <span class="event-tag">Culture</span>
+                <span class="event-tag">Evening</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card fade-in fade-in-delay-4"
+               data-title="Fire Safety Workshop" data-type="Workshop"
+               data-event-id="2026-05-10">
+            <div class="event-date-box">
+              <div class="day">10</div>
+              <div class="month">May</div>
+            </div>
+            <div class="event-info">
+              <h4>🔥 Fire Safety Workshop</h4>
+              <p>11:00 AM · Conference Room · Essential safety training</p>
+              <div class="event-tags">
+                <span class="event-tag">Workshop</span>
+                <span class="event-tag">Safety</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="booking-section" id="book-event">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">Book Now</span>
+      <h2>Reserve Your Spot</h2>
+      <p>Fill in the details below to book an event or facility. Our team will confirm within 24 hours.</p>
+    </div>
+
+    <div class="booking-card fade-in">
+      <form id="booking-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-name">Full Name *</label>
+            <input type="text" id="book-name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="book-flat">Flat / Block Number *</label>
+            <input type="text" id="book-flat" placeholder="e.g. A-204" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-phone">Phone Number *</label>
+            <input type="tel" id="book-phone" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+          <div class="form-group">
+            <label for="book-date">Event Date *</label>
+            <input type="date" id="book-date" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="book-event-type">Event / Facility Type *</label>
+          <select id="book-event-type" required>
+            <option value="">— Select —</option>
+            <option>Community Hall Booking</option>
+            <option>Swimming Pool Session</option>
+            <option>Sports Court Booking</option>
+            <option>Garden Area Booking</option>
+            <option>Society Event Participation</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="book-notes">Special Notes (optional)</label>
+          <textarea id="book-notes" placeholder="Any additional requirements or notes…"></textarea>
+        </div>
+
+        <!-- Payment UI (visual only) -->
+        <div class="payment-ui">
+          <h4>💳 Payment Method</h4>
+          <div class="payment-methods">
+            <div class="pay-method selected">💳 Online (UPI)</div>
+            <div class="pay-method">🏦 Bank Transfer</div>
+            <div class="pay-method">💵 Cash at Office</div>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label>UPI ID (if applicable)</label>
+            <input type="text" placeholder="yourname@upi" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+          📅 Book Event Now
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-icon">G</div>
+        <p>GreenVale Society — a community built on trust, transparency, and togetherness. Est. 2002.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="news.html">News & Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#">Society Rules</a></li>
+          <li><a href="#">Resident Portal</a></li>
+          <li><a href="#">Complaints</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+911234567890">+91 123 456 7890</a></li>
+          <li><a href="mailto:info@greenvale.in">info@greenvale.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 GreenVale Society Management. All rights reserved.</span>
+      <span>Made with ❤️ for our community</span>
+    </div>
+  </div>
+</footer>
+```
+
+  </div>
+
+  <!-- EVENT DETAIL MODAL -->
+
+  <div class="modal-overlay" id="event-modal">
+    <div class="modal">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <div class="modal-icon">📅</div>
+      <h3>Event Title</h3>
+      <p>Event description will appear here.</p>
+      <div class="modal-meta">
+        <div class="modal-meta-item">📅 Date</div>
+        <div class="modal-meta-item">⏰ Time</div>
+        <div class="modal-meta-item">📍 Location</div>
+        <div class="modal-meta-item">🏷️ Type</div>
+      </div>
+      <a href="#book-event" class="btn btn-sage" style="width:100%;justify-content:center;" onclick="closeModal('event-modal')">
+        Book This Event →
+      </a>
+    </div>
+  </div>
+
+  <!-- BOOKING SUCCESS MODAL -->
+
+  <div class="modal-overlay" id="booking-success-modal">
+    <div class="modal" style="text-align:center;">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <div style="font-size:3rem;margin-bottom:16px;">🎉</div>
+      <h3>Booking Confirmed!</h3>
+      <p style="margin-bottom:24px;">Your booking request has been submitted. Our team will contact you within 24 hours to confirm the details.</p>
+      <button class="btn btn-primary" onclick="closeModal('booking-success-modal')" style="width:100%;justify-content:center;">
+        Done
+      </button>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

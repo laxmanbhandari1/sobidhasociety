@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Society Management AI Assistant</title>
+    <link rel="stylesheet" href="../css/chatstyle.css">
+</head>
+<body>
+    <!-- Main Chat Container -->
+    <div class="chat-container">
+        <!-- Header Section -->
+        <div class="chat-header">
+            <div class="header-content">
+                <div class="ai-avatar">🏢</div>
+                <div class="header-text">
+                    <h1>Society Assistant</h1>
+                    <p class="status">Online • Ready to help</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div class="chat-messages" id="chatMessages">
+            <!-- Welcome Message -->
+            <div class="message ai-message">
+                <div class="message-content">
+                    <div class="ai-icon">🤖</div>
+                    <div class="message-bubble">
+                        Hello! I'm your Society Assistant. I can help you with:
+                        <br>• Facility information
+                        <br>• Event bookings
+                        <br>• Society news
+                        <br>• Contacting management
+                        <br><br>How can I help you today?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typing Indicator (Hidden by default) -->
+        <div class="typing-indicator" id="typingIndicator" style="display: none;">
+            <div class="message ai-message">
+                <div class="message-content">
+                    <div class="ai-icon">🤖</div>
+                    <div class="message-bubble typing">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <!-- Text Input -->
+                <input 
+                    type="text" 
+                    id="messageInput" 
+                    class="message-input" 
+                    placeholder="Type your message here..."
+                    autocomplete="off"
+                >
+                
+                <!-- Voice Input Button -->
+                <button class="voice-btn" id="voiceBtn" title="Voice input">
+                    🎤
+                </button>
+                
+                <!-- Send Button -->
+                <button class="send-btn" id="sendBtn" title="Send message">
+                    ➤
+                </button>
+            </div>
+            <p class="input-hint">Press Enter to send • Click 🎤 for voice input</p>
+        </div>
+    </div>
+
+    <script src="../js/chatmain.js"></script>
+</body>
+</html>

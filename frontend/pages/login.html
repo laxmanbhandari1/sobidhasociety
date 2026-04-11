@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenVale Society — Login</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <div class="login-page">
+
+```
+<!-- LEFT PANEL -->
+<div class="login-left">
+  <div class="content">
+    <div class="logo">
+      <div class="logo-box">G</div>
+      <span>GreenVale Society</span>
+    </div>
+
+    <h2>Welcome Back,<br>Resident!</h2>
+    <p>Your community is just one login away. Access your account to manage everything from one place.</p>
+
+    <div class="login-features">
+      <div class="login-feature">
+        <div class="icon">🏠</div>
+        <span>View and manage your apartment details</span>
+      </div>
+      <div class="login-feature">
+        <div class="icon">📅</div>
+        <span>Book facilities & upcoming events</span>
+      </div>
+      <div class="login-feature">
+        <div class="icon">🔔</div>
+        <span>Receive real-time society notifications</span>
+      </div>
+      <div class="login-feature">
+        <div class="icon">💬</div>
+        <span>Chat with management & neighbours</span>
+      </div>
+      <div class="login-feature">
+        <div class="icon">💰</div>
+        <span>Pay maintenance bills online easily</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="login-right">
+  <div class="login-box">
+
+    <!-- Back link -->
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--slate-muted);margin-bottom:32px;font-weight:500;">
+      ← Back to Home
+    </a>
+
+    <h3>Sign In to Your Account</h3>
+    <p class="sub">Enter your registered email and password to continue.</p>
+
+    <!-- Social Login -->
+    <div class="social-login">
+      <button class="social-btn">🔵 Google</button>
+      <button class="social-btn">📘 Facebook</button>
+    </div>
+
+    <div class="divider">or sign in with email</div>
+
+    <!-- Login Form -->
+    <form id="login-form">
+
+      <div class="form-group">
+        <label for="login-email">Email Address</label>
+        <input type="email" id="login-email" placeholder="your@email.com" autocomplete="email" />
+        <span class="error-msg" id="login-email-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <div style="position:relative;display:flex;align-items:center;">
+          <input type="password" id="login-password" placeholder="Enter your password" autocomplete="current-password" style="flex:1;" />
+          <button type="button" class="toggle-password" style="position:absolute;right:14px;background:none;border:none;cursor:pointer;font-size:1rem;padding:0;" aria-label="Toggle password visibility">👁️</button>
+        </div>
+        <span class="error-msg" id="login-password-error"></span>
+      </div>
+
+      <a href="#" class="forgot">Forgot password?</a>
+
+      <!-- Remember me -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <input type="checkbox" id="remember-me" style="width:16px;height:16px;accent-color:var(--sage);cursor:pointer;" />
+        <label for="remember-me" style="font-size:0.87rem;color:var(--slate-light);cursor:pointer;">Remember me on this device</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+        Sign In →
+      </button>
+
+    </form>
+
+    <p class="login-footer-text">
+      Don't have an account? <a href="#">Register as Resident</a>
+    </p>
+
+    <p style="text-align:center;font-size:0.75rem;color:var(--slate-muted);margin-top:24px;line-height:1.6;">
+      By signing in, you agree to GreenVale Society's<br>
+      <a href="#" style="color:var(--sage);">Terms of Use</a> &amp; <a href="#" style="color:var(--sage);">Privacy Policy</a>
+    </p>
+
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- LOGIN SUCCESS MODAL -->
+
+  <div class="modal-overlay" id="login-success-modal">
+    <div class="modal" style="text-align:center;">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <div style="font-size:3rem;margin-bottom:16px;">🏡</div>
+      <h3>Welcome Home!</h3>
+      <p style="margin-bottom:24px;">You've signed in successfully. This is a demo — no real backend is connected. Explore the site freely!</p>
+      <a href="index.html" class="btn btn-primary" style="width:100%;justify-content:center;">Go to Homepage →</a>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>
