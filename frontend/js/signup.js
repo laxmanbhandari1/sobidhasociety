@@ -10,12 +10,11 @@ var supabaseClient = window.supabase.createClient(
   'sb_publishable_h9NayWVGmNHCNZToonGaag_PO2Q7Bht'
 )
 
-// ── Google Sign-up ───────────────────────────────────────────
-document.getElementById('google-signup-btn').addEventListener('click', async () => {
-  await supabaseClient.auth.signInWithOAuth({          // ✅ was: supabase.auth
+/document.getElementById('google-signup-btn').addEventListener('click', async () => {
+  await supabaseClient.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: 'http://127.0.0.1:5501/frontend/pages/index.html'
+      redirectTo: window.location.origin + '/frontend/pages/index.html'
     }
   })
 })

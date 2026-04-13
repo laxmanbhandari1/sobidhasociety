@@ -15,13 +15,13 @@ var supabaseClient = window.supabase.createClient(
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: 'http://127.0.0.1:5501/frontend/pages/index.html#'
+          redirectTo: window.location.origin + '/frontend/pages/index.html'
         }
       })
     })
   })
 
-
+ 
 
 // ── DOM refs ────────────────────────────────────────────────
 const loginForm       = document.getElementById('login-form');
