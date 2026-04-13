@@ -12,7 +12,7 @@ var supabaseClient = window.supabase.createClient(
 
   document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('google-signin-btn').addEventListener('click', async () => {
-      await supabase.auth.signInWithOAuth({
+      await supabaseClient.auth.signInWithOAuth({  
         provider: 'google',
         options: {
           redirectTo: window.location.origin + '/frontend/pages/index.html'
@@ -138,21 +138,20 @@ loginForm.addEventListener('submit', async (e) => {
 
 
   async function loginUser(email, password) {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabaseClient.auth.signInWithPassword({  // ← was supabase
       email,
       password
-    });
+    })
   
     if (error) {
-      errorToastMsg.textContent = error.message;
-      showToast(errorToast);
-      submitBtn.classList.remove('loading');
-      submitBtn.disabled = false;
-      return;
+      errorToastMsg.textContent = error.message
+      showToast(errorToast)
+      submitBtn.classList.remove('loading')
+      submitBtn.disabled = false
+      return
     }
   
-    // success
-    window.location.href = 'index.html';
+    window.location.href = 'index.html'
   }
 
   

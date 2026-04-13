@@ -10,7 +10,7 @@ var supabaseClient = window.supabase.createClient(
   'sb_publishable_h9NayWVGmNHCNZToonGaag_PO2Q7Bht'
 )
 
-/document.getElementById('google-signup-btn').addEventListener('click', async () => {
+document.getElementById('google-signup-btn').addEventListener('click', async () => {
   await supabaseClient.auth.signInWithOAuth({
     provider: 'google',
     options: {
