@@ -21,27 +21,27 @@
         </div>
       </a>
 
-```
+
   <button class="hamburger" id="hamburger" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
 
   <ul class="navbar-links" id="navbar-links">
     <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="facilities.html">Facilities</a></li>
-    <li><a href="events.html">Events</a></li>
-    <li><a href="news.html">News&Stories</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="#facility-mount">Facilities</a></li>
+    <li><a href="#events-mount">Events</a></li>
+    <li><a href="#news-mount">News&Stories</a></li>
+    <li><a href="#contact-mount">Contact</a></li>
     <li><a href="login.html" class="btn-login">Login</a></li>
   </ul>
 </div>
-```
+
 
   </nav>
 
   <div class="page-wrapper">
 
-```
+
 <!-- ===================== HERO ===================== -->
 <section style="background: var(--ivory);">
   <div class="hero">
@@ -179,7 +179,7 @@
         </div>
       </div>
 
-      <a href="contact.html" class="btn btn-sage">Try the Chat →</a>
+      <a href="./chat.html" class="btn btn-sage">Try the Chat →</a>
     </div>
 
     <!-- Right: Chat UI Mockup -->
@@ -254,55 +254,19 @@
 
     </div>
   </div>
-</section>
-
-<!-- ===================== FOOTER ===================== -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo-icon">G</div>
-        <p>GreenVale Society — a community built on trust, transparency, and togetherness. Est. 2002.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Pages</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="facilities.html">Facilities</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="news.html">News & Stories</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Community</h4>
-        <ul>
-          <li><a href="#">Society Rules</a></li>
-          <li><a href="#">Maintenance Requests</a></li>
-          <li><a href="#">Resident Portal</a></li>
-          <li><a href="#">Complaints</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+911234567890">+91 123 456 7890</a></li>
-          <li><a href="mailto:info@greenvale.in">info@greenvale.in</a></li>
-          <li><a href="#">12 GreenVale Lane, Sector 7</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 GreenVale Society Management. All rights reserved.</span>
-      <span>Made with ❤️ for our community</span>
-    </div>
-  </div>
-</footer>
-```
+  
 
   </div><!-- end page-wrapper -->
+  <div id="facility-mount"></div>
+  <div id="events-mount"></div>
+ <div id="news-mount"></div>
+ <div id="contact-mount"></div>
+ <div id="chat-mount"></div>
+ <div id="footer-mount"></div>
 
-  <script src="../js/main.js"></script>
+
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+ <script src="../js/main.js"></script>
 
 </body>
 </html>

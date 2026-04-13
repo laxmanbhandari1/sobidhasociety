@@ -1,8 +1,13 @@
 /* ============================================
 SOCIETY MANAGEMENT SYSTEM - MAIN JS
-Vanilla JavaScript - Beginner to Intermediate
+Supabse connection
 ============================================ */
+console.log("JS WORKING")
 
+var supabaseClient = window.supabase.createClient(
+  'https://wqqhwfpndcmpbkhclhlc.supabase.co',
+ 'sb_publishable_h9NayWVGmNHCNZToonGaag_PO2Q7Bht'
+)
 /* ============================================
 NAVBAR - Scroll Effect & Mobile Menu
 ============================================ */
@@ -44,11 +49,15 @@ function initNavbar() {
   });
 }
 
+
+
+
 /* ============================================
 FADE-IN ANIMATION (on scroll)
 ============================================ */
 function initFadeIn() {
-  const elements = document.querySelectorAll('.fade-in');
+  // :not(.visible) ensures already-animated elements are skipped
+  const elements = document.querySelectorAll('.fade-in:not(.visible)');
   if (!elements.length) return;
 
   const observer = new IntersectionObserver((entries) => {
@@ -82,12 +91,14 @@ function animateCounter(el) {
 }
 
 function initCounters() {
-  const counters = document.querySelectorAll('.counter');
+  // data-counted prevents double-animating after re-init
+  const counters = document.querySelectorAll('.counter:not([data-counted])');
   if (!counters.length) return;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        entry.target.setAttribute('data-counted', 'true');
         animateCounter(entry.target);
         observer.unobserve(entry.target);
       }
@@ -152,7 +163,6 @@ CALENDAR (events.html)
 const eventsData = {
   '2026-04-05': { title: 'Annual General Meeting', icon: '\uD83C\uDFDB', time: '10:00 AM', location: 'Community Hall', type: 'Meeting', desc: 'Yearly gathering for all society members to discuss updates, budgets, and upcoming plans.' },
   '2026-04-12': { title: 'Spring Garden Festival', icon: '\uD83C\uDF38', time: '9:00 AM', location: 'Society Garden', type: 'Festival', desc: 'Celebrate spring with flowers, music, and food stalls. Fun for all ages!' },
-  // FIX 2: Apostrophe in "Children's" replaced with escaped version to avoid string break
   '2026-04-18': { title: "Children's Sports Day", icon: '\u26BD', time: '8:00 AM', location: 'Playground', type: 'Sports', desc: 'A fun-filled sports event for children aged 5-15 with prizes and refreshments.' },
   '2026-04-22': { title: 'Yoga & Wellness Session', icon: '\uD83E\uDDD8', time: '6:30 AM', location: 'Terrace Garden', type: 'Wellness', desc: 'Join our certified yoga instructor for a morning wellness session. Free for all residents.' },
   '2026-04-28': { title: 'Cultural Night', icon: '\uD83C\uDFAD', time: '6:00 PM', location: 'Main Hall', type: 'Culture', desc: 'A beautiful evening of performances, traditional food, and cultural displays from all communities.' },
@@ -180,7 +190,6 @@ function buildCalendar(date) {
 
   calDates.innerHTML = '';
 
-  // FIX 1: Was `i–` (en dash) — must be `i--` (two hyphens) for decrement
   for (let i = firstDay - 1; i >= 0; i--) {
     const dayEl = document.createElement('div');
     dayEl.className = 'cal-date other-month';
@@ -350,7 +359,6 @@ function initNewsToggle() {
   });
 }
 
-// FIX 3: Use plain straight quotes in the injected style string
 const style = document.createElement('style');
 style.textContent = '@keyframes fadeSlide { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }';
 document.head.appendChild(style);
@@ -367,7 +375,6 @@ function initNewsCards() {
       modal.querySelector('.modal-icon').textContent = card.getAttribute('data-icon') || '\uD83D\uDCF0';
       modal.querySelector('#news-modal-title').textContent = card.getAttribute('data-title') || '';
       modal.querySelector('#news-modal-date').textContent = card.getAttribute('data-date') || '';
-      // FIX 4: Null-safe fallback so missing data-body doesn't crash the modal
       modal.querySelector('#news-modal-body').textContent = card.getAttribute('data-body') || '';
 
       openModal('news-modal');
@@ -395,13 +402,15 @@ function initContactForm() {
     input.addEventListener('input', () => clearError(input.id));
   });
 
-  form.addEventListener('submit', (e) => {
+  // ✅ Changed to async
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     let valid = true;
 
-    const name = document.getElementById('contact-name');
-    const email = document.getElementById('contact-email');
+    const name    = document.getElementById('contact-name');
+    const email   = document.getElementById('contact-email');
     const message = document.getElementById('contact-message');
+    const subject = document.getElementById('contact-subject');
 
     if (!name?.value.trim()) { showError('contact-name', 'Please enter your name.'); valid = false; }
     if (!email?.value.trim()) { showError('contact-email', 'Please enter your email.'); valid = false; }
@@ -409,75 +418,48 @@ function initContactForm() {
     if (!message?.value.trim()) { showError('contact-message', 'Please write your message.'); valid = false; }
     else if (message.value.trim().length < 10) { showError('contact-message', 'Message must be at least 10 characters.'); valid = false; }
 
-    if (valid) {
-      const formEl = form.parentElement;
-      const successEl = document.getElementById('form-success');
-      if (formEl && successEl) {
-        form.style.display = 'none';
-        successEl.classList.add('show');
-      }
+    if (!valid) return;
+
+    // ✅ Supabase insert
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const { error } = await supabaseClient
+      .from('contact_messages')
+      .insert({
+        name:    name.value.trim(),
+        email:   email.value.trim(),
+        subject: subject?.value || null,
+        message: message.value.trim()
+      });
+
+    if (error) {
+      console.error('Supabase error:', error);
+      submitBtn.disabled = false;
+      submitBtn.textContent = '📨 Send Message';
+      showError('contact-message', 'Something went wrong. Please try again.');
+      return;
     }
+
+    // ✅ Show success
+    const successEl = document.getElementById('form-success');
+    form.style.display = 'none';
+    successEl?.classList.add('show');
   });
 }
 
-/* ============================================
-LOGIN FORM VALIDATION (login.html)
-============================================ */
-function initLoginForm() {
-  const form = document.getElementById('login-form');
-  if (!form) return;
-
-  document.querySelectorAll('.toggle-password').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const input = btn.previousElementSibling;
-      if (input && input.type === 'password') {
-        input.type = 'text';
-        btn.textContent = '\uD83D\uDE48';
-      } else if (input) {
-        input.type = 'password';
-        btn.textContent = '\uD83D\uDC41\uFE0F';
-      }
-    });
-  });
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('login-email');
-    const password = document.getElementById('login-password');
-    const emailErr = document.getElementById('login-email-error');
-    const passErr = document.getElementById('login-password-error');
-
-    let valid = true;
-    if (emailErr) emailErr.classList.remove('show');
-    if (passErr) passErr.classList.remove('show');
-
-    if (!email?.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-      if (emailErr) { emailErr.textContent = 'Please enter a valid email.'; emailErr.classList.add('show'); }
-      valid = false;
-    }
-    if (!password?.value || password.value.length < 6) {
-      if (passErr) { passErr.textContent = 'Password must be at least 6 characters.'; passErr.classList.add('show'); }
-      valid = false;
-    }
-
-    if (valid) {
-      const btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.textContent = 'Signing in...'; btn.disabled = true; }
-      setTimeout(() => {
-        if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
-        openModal('login-success-modal');
-      }, 1400);
-    }
-  });
-}
 
 /* ============================================
 SMOOTH SCROLL for anchor links
+Handles anchors that exist NOW and anchors that
+point to mount divs loaded after stitch
 ============================================ */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
-      const target = document.querySelector(link.getAttribute('href'));
+      const targetId = link.getAttribute('href');
+      const target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -487,15 +469,78 @@ function initSmoothScroll() {
 }
 
 /* ============================================
-INIT — runs on every page
+STITCH HELPER
+Fetches one page, extracts content by selector,
+injects it into the matching mount div
 ============================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  initNavbar();
+async function stitchPage(filename, contentSelector, mountId) {
+  try {
+    const res = await fetch('./' + filename + '?v=' + Date.now(), {
+      cache: 'no-store'
+    });
+
+    if (!res.ok) {
+      console.warn('Could not fetch ' + filename + ' — status: ' + res.status);
+      return;
+    }
+
+    const html = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const content = doc.querySelector(contentSelector);
+    const mount = document.getElementById(mountId);
+
+    if (!content) {
+      console.warn('❌ Could not find ' + contentSelector + ' inside ' + filename);
+      return;
+    }
+
+    if (!mount) {
+      console.warn('❌ Could not find #' + mountId + ' in index.html');
+      return;
+    }
+
+    mount.appendChild(content);
+
+    // Re-execute any inline <script> tags from the fetched page
+    content.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+    });
+
+    console.log('✅ Stitched ' + filename + ' → #' + mountId);
+
+  } catch (err) {
+    console.error('❌ Failed to stitch ' + filename + ':', err);
+  }
+}
+
+/* ============================================
+STITCH ALL PAGES
+Loads all pages into index.html in scroll order,
+then re-runs all observers and interactive logic
+============================================ */
+async function stitchAllPages() {
+  // Pages load in this order top → bottom on the page
+  await stitchPage('facilities.html', '#facility-content', 'facility-mount');
+  await stitchPage('events.html',     '#events-content',   'events-mount');
+  await stitchPage('news.html',       '#news-content',     'news-mount');
+  await stitchPage('contact.html',    '#contact-content',  'contact-mount');
+  await stitchPage('chat.html',       '#chat-content',     'chat-mount');
+  await stitchPage('footer.html',     '#footer-content',   'footer-mount');
+
+  // Re-run observers — new DOM content won't be observed otherwise
   initFadeIn();
   initCounters();
-  initModals();
-  initSmoothScroll();
 
+  // Re-run all page-specific interactive logic
+  // for content that just landed in the DOM
   initCalendar();
   initEventSearch();
   initEventCards();
@@ -503,5 +548,36 @@ document.addEventListener('DOMContentLoaded', () => {
   initNewsToggle();
   initNewsCards();
   initContactForm();
-  initLoginForm();
+
+  // Re-init smooth scroll so links inside stitched
+  // content also get smooth scroll behaviour
+  initSmoothScroll();
+
+  console.log('✅ All pages stitched and ready');
+}
+
+/* ============================================
+INIT — runs on every page load
+============================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+  initFadeIn();
+  initCounters();
+  initModals();
+  initSmoothScroll();
+  
+
+  // Only stitch on index.html — detected by presence of #facility-mount
+  if (document.getElementById('facility-mount')) {
+    stitchAllPages();
+  } else {
+    // On individual standalone pages, run their own logic directly
+    initCalendar();
+    initEventSearch();
+    initEventCards();
+    initBookingForm();
+    initNewsToggle();
+    initNewsCards();
+    initContactForm();
+  }
 });
