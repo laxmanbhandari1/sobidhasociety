@@ -1001,7 +1001,8 @@ main {
 }
 .facility-image {
   background: var(--sage-pale);
-  min-height: 280px;
+  height: 280px;
+  min-height: unset;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1009,6 +1010,18 @@ main {
   position: relative;
   overflow: hidden;
 }
+
+.facility-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .facility-image::before {
   content: "";
   position: absolute;
@@ -1268,6 +1281,7 @@ main {
   font-size: 0.83rem;
   color: var(--slate-muted);
   margin-bottom: 8px;
+  font-weight: 600;
 }
 .event-tags {
   display: flex;
@@ -1605,182 +1619,6 @@ main {
   color: var(--slate-muted);
 }
 .form-success.show {
-  display: block;
-}
-
-/* ============================================
-   LOGIN PAGE
-   ============================================ */
-.login-page {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.login-left {
-  background: var(--slate);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 60px;
-  position: relative;
-  overflow: hidden;
-}
-.login-left::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at 30% 70%,
-    rgba(107, 143, 113, 0.3) 0%,
-    transparent 60%
-  );
-}
-.login-left .content {
-  position: relative;
-  z-index: 1;
-}
-.login-left .logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 48px;
-}
-.login-left .logo-box {
-  width: 44px;
-  height: 44px;
-  background: var(--sage);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-.login-left .logo-box + span {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--white);
-}
-.login-left h2 {
-  color: var(--white);
-  margin-bottom: 16px;
-  font-size: 2.2rem;
-}
-.login-left p {
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 48px;
-  font-size: 1.05rem;
-}
-.login-features {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.login-feature {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.login-feature .icon {
-  width: 36px;
-  height: 36px;
-  background: rgba(107, 143, 113, 0.25);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-}
-.login-feature span {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.9rem;
-}
-
-.login-right {
-  background: var(--ivory);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px;
-}
-.login-box {
-  width: 100%;
-  max-width: 400px;
-}
-.login-box h3 {
-  margin-bottom: 8px;
-}
-.login-box .sub {
-  color: var(--slate-muted);
-  font-size: 0.93rem;
-  margin-bottom: 36px;
-}
-.login-footer-text {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--slate-muted);
-  margin-top: 20px;
-}
-.login-footer-text a {
-  color: var(--sage);
-  font-weight: 600;
-}
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 24px 0;
-  color: var(--slate-muted);
-  font-size: 0.82rem;
-}
-.divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--ivory-dark);
-}
-.social-login {
-  display: flex;
-  gap: 12px;
-}
-.social-btn {
-  flex: 1;
-  border: 1.5px solid var(--ivory-dark);
-  background: var(--white);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  text-align: center;
-  font-size: 0.85rem;
-  font-family: var(--font-body);
-  color: var(--slate);
-  cursor: pointer;
-  transition: var(--transition);
-  font-weight: 500;
-}
-.social-btn:hover {
-  border-color: var(--sage);
-  background: var(--sage-pale);
-}
-.forgot {
-  font-size: 0.83rem;
-  color: var(--sage);
-  font-weight: 600;
-  text-align: right;
-  display: block;
-  margin-top: -12px;
-  margin-bottom: 24px;
-}
-.error-msg {
-  font-size: 0.8rem;
-  color: #e53e3e;
-  margin-top: 4px;
-  display: none;
-}
-.error-msg.show {
   display: block;
 }
 
