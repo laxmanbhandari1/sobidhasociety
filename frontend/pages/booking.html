@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SocietySuwidhaHub — Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<main id="booking-content" >
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div class="container">
+        <span class="section-tag">Reserve Your Spot</span>
+        <h1>Book a Facility or Event</h1>
+        <p>Fill in the details below to book an event or facility. Our team will confirm within 24 hours.</p>
+      </div>
+    </div>
+
+    <!-- BOOKING CONTENT -->
+    <section class="booking-section">
+      <div class="booking-card">
+
+        <!-- Facility type cards -->
+        <h3 style="margin-bottom:24px;font-size:1.3rem;">What would you like to book?</h3>
+        <div class="booking-type-grid">
+          <div class="booking-type-card active" data-type="Community Hall Booking">
+            <div class="btc-icon">🎭</div>
+            <div class="btc-label">Community Hall</div>
+          </div>
+          <div class="booking-type-card" data-type="Swimming Pool Session">
+            <div class="btc-icon">🏊</div>
+            <div class="btc-label">Swimming Pool</div>
+          </div>
+          <div class="booking-type-card" data-type="Sports Court Booking">
+            <div class="btc-icon">🏓</div>
+            <div class="btc-label">Sports Court</div>
+          </div>
+          <div class="booking-type-card" data-type="Garden Area Booking">
+            <div class="btc-icon">🌳</div>
+            <div class="btc-label">Garden Area</div>
+          </div>
+          <div class="booking-type-card" data-type="Society Event Participation">
+            <div class="btc-icon">📅</div>
+            <div class="btc-label">Society Event</div>
+          </div>
+          <div class="booking-type-card" data-type="Other">
+            <div class="btc-icon">✏️</div>
+            <div class="btc-label">Other</div>
+          </div>
+        </div>
+
+        <hr style="margin:32px 0;border:none;border-top:1px solid var(--ivory-dark);" />
+
+        <!-- Booking Form -->
+        <form id="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="booking-name">Full Name *</label>
+              <input type="text" id="booking-name" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="booking-flat">Flat / Block Number *</label>
+              <input type="text" id="booking-flat" placeholder="e.g. A-204" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="booking-phone">Phone Number *</label>
+              <input type="tel" id="booking-phone" placeholder="+91 XXXXX XXXXX" required />
+            </div>
+            <div class="form-group">
+              <label for="booking-date">Preferred Date *</label>
+              <input type="date" id="booking-date" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="booking-type">Facility / Event Type *</label>
+            <select id="booking-type" required>
+              <option value="">— Select —</option>
+              <option>Community Hall Booking</option>
+              <option>Swimming Pool Session</option>
+              <option>Sports Court Booking</option>
+              <option>Garden Area Booking</option>
+              <option>Society Event Participation</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="booking-notes">Special Notes (optional)</label>
+            <textarea id="booking-notes" placeholder="Any special requirements or notes…"></textarea>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="payment-ui">
+            <h4>💳 Payment Method</h4>
+            <div class="payment-methods">
+              <div class="pay-method selected">💳 Online (card)</div>
+              <div class="pay-method">🏦 Bank Transfer</div>
+              <div class="pay-method">💵 Cash at Office</div>
+            </div>
+            <div class="form-group" id="upi-field">
+              <label for="booking-upi">Pay with your card</label>
+              <input type="text" id="booking-upi" placeholder="yourname@upi" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:16px;">
+            📅 Confirm Booking
+          </button>
+        </form>
+
+        <!-- Success State -->
+        <div class="form-success" id="booking-success" style="display:none;text-align:center;padding:48px 24px;">
+          <div style="font-size:3.5rem;margin-bottom:20px;">🎉</div>
+          <h3 style="color:var(--sage);margin-bottom:12px;">Booking Confirmed!</h3>
+          <p>Your booking request has been submitted. Our team will contact you within 24 hours to confirm the details.</p>
+          <br/>
+          <button class="btn btn-sage" onclick="location.reload()">Make Another Booking</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NEED HELP -->
+    <div style="background:var(--sage-pale);padding:48px 24px;text-align:center;">
+      <div class="container">
+        <h3 style="margin-bottom:12px;">Need help with your booking?</h3>
+        <p style="margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto;">Our team is available Monday to Saturday, 9 AM to 6 PM. You can also reach us through the chat assistant.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="#contact-mount" class="btn btn-primary">Contact Us →</a>
+          <a href="chat.html" class="btn btn-sage">Try the Chat →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main> 
+
+ 
+  <script src="../js/main.js"></script>
+
+ 
+
+</body>
+</html>

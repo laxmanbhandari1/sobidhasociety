@@ -333,6 +333,85 @@ function initBookingForm() {
   });
 }
 
+function initBookingForm() {
+
+  console.log("Initializing booking form");
+
+  const form = document.getElementById('booking-form');
+
+  if (!form) {
+    console.warn("Booking form not found");
+    return;
+  }
+
+  // Booking type selection
+  document.querySelectorAll('.booking-type-card').forEach(card => {
+    card.addEventListener('click', () => {
+
+      document.querySelectorAll('.booking-type-card')
+        .forEach(c => c.classList.remove('active'));
+
+      card.classList.add('active');
+
+      const type = card.getAttribute('data-type');
+      const select = document.getElementById('booking-type');
+
+      if (select) select.value = type;
+
+    });
+  });
+
+  // Payment method selection
+  document.querySelectorAll('.pay-method').forEach(btn => {
+    btn.addEventListener('click', () => {
+
+      document.querySelectorAll('.pay-method')
+        .forEach(b => b.classList.remove('selected'));
+
+      btn.classList.add('selected');
+
+      const upiField = document.getElementById('upi-field');
+
+      if (upiField) {
+        upiField.style.display =
+          btn.textContent.includes('UPI') ? '' : 'none';
+      }
+
+    });
+  });
+
+  // Hide UPI initially
+  const upiField = document.getElementById('upi-field');
+  if (upiField) {
+    upiField.style.display = 'none';
+  }
+
+  // Submit handler
+  form.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    const btn = form.querySelector('button[type="submit"]');
+
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+    }
+
+    await new Promise(r => setTimeout(r, 800));
+
+    form.style.display = 'none';
+
+    const success = document.getElementById('booking-success');
+
+    if (success) {
+      success.style.display = 'block';
+    }
+
+  });
+
+}
+
 /* ============================================
 NEWS / STORIES TOGGLE (news.html)
 ============================================ */
@@ -530,10 +609,11 @@ async function stitchAllPages() {
   // Pages load in this order top → bottom on the page
   await stitchPage('facilities.html', '#facility-content', 'facility-mount');
   await stitchPage('events.html',     '#events-content',   'events-mount');
+  await stitchPage('booking.html',     '#booking-content',   'booking-mount');
   await stitchPage('news.html',       '#news-content',     'news-mount');
   await stitchPage('contact.html',    '#contact-content',  'contact-mount');
   await stitchPage('chat.html',       '#chat-content',     'chat-mount');
-  await stitchPage('footer.html',     '#footer-content',   'footer-mount');
+  
 
   // Re-run observers — new DOM content won't be observed otherwise
   initFadeIn();
