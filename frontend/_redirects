@@ -1,3 +1,7 @@
+[build]
+  publish = "frontend"
+
+[[redirects]]
   from = "/pages/*"
   to = "/pages/index.html"
   status = 200
