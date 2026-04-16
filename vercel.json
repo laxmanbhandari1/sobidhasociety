@@ -1,8 +1,18 @@
 {
+    "builds": [
+      {
+        "src": "frontend/pages/**",
+        "use": "@vercel/static"
+      }
+    ],
     "routes": [
       {
+        "src": "/(.*)",
+        "dest": "frontend/pages/$1"
+      },
+      {
         "src": "/",
-        "dest": "/frontend/pages/index.html"
+        "dest": "frontend/pages/index.html"
       }
     ]
   }
