@@ -13,10 +13,20 @@
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="navbar-logo">
-        <div class="navbar-logo-icon">S</div>
-        <div class="navbar-logo-text">
-          <span class="name">SocietysubidhaHub</span>
-          <span class="sub">Est. 2002 · Community First</span>
+        <img
+          src="../assets/logo.png"
+          alt="SocietysubidhaHub"
+          class="navbar-logo-img"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+        />
+        SocietySubidhaHub
+        <!-- Fallback if logo.png not found -->
+        <div class="navbar-logo-fallback">
+          <div class="navbar-logo-icon">S</div>
+          <div class="navbar-logo-text">
+            <span class="name">SocietysubidhaHub</span>
+            <span class="sub">Est. 2002 · Community First</span>
+          </div>
         </div>
       </a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -29,7 +39,7 @@
         <li><a href="#booking-mount">Booking</a></li>
         <li><a href="#news-mount">News&Story</a></li>
         <li><a href="#contact-mount">Contact</a></li>
-          <li><a href="login.html" class="btn-login">Login</a></li>
+        <li><a href="login.html" class="btn-login">Login</a></li>
       </ul>
     </div>
   </nav>
@@ -39,31 +49,63 @@
     <!-- ===================== HERO ===================== -->
     <section class="hero-illus">
 
-      <div class="hero-illus-bg">
+      <!-- DESKTOP: Full image with text overlay -->
+      <div class="hero-illus-bg" id="hero-parallax-bg">
         <img
           src="../assets/hero/hero3.png"
-          alt="SocietysubidhaHub community — residents of all ages enjoying shared spaces"
+          alt="SocietysubidhaHub community"
+          id="hero-parallax-img"
         />
         <div class="hero-illus-overlay"></div>
+
+        <!-- Text sits on top of image -->
+        <div class="hero-illus-text">
+          <div class="hero-illus-badge fade-in">
+            <span class="hero-dot"></span>
+            Est. 2002 · Now Accepting New Resident Registrations
+          </div>
+          <h1 class="hero-illus-title fade-in fade-in-delay-1">
+            Welcome to<br>SocietysubidhaHub
+          </h1>
+          <p class="hero-illus-desc fade-in fade-in-delay-2">
+            Connect, collaborate, and thrive together in our modern community hub — smart tools, beautiful spaces, and caring neighbours all in one place.
+          </p>
+          <div class="hero-illus-actions fade-in fade-in-delay-3">
+            <a href="#events-mount" class="btn btn-hero-primary">Explore Events ↗</a>
+            <a href="#facility-mount" class="btn btn-hero-secondary">View Facilities</a>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-illus-text">
-        <div class="hero-illus-badge fade-in">
-          <span class="hero-dot"></span>
-          Est. 2002 · Now Accepting New Resident Registrations
-        </div>
-        <h1 class="hero-illus-title fade-in fade-in-delay-1">
-          Welcome to SocietysubidhaHub
-        </h1>
-        <p class="hero-illus-desc fade-in fade-in-delay-2">
-          Connect, collaborate, and thrive together in our modern community hub — smart tools, beautiful spaces, and caring neighbours all in one place.
-        </p>
-        <div class="hero-illus-actions fade-in fade-in-delay-3">
-          <a href="#events-mount" class="btn btn-hero-primary">Explore Events ↗</a>
-          <a href="#facility-mount" class="btn btn-hero-secondary">View Facilities</a>
+      <!-- MOBILE ONLY: No image — clean text hero -->
+      <div class="hero-mobile">
+        <div class="hero-mobile-accent hero-mobile-accent-1"></div>
+        <div class="hero-mobile-accent hero-mobile-accent-2"></div>
+        <div class="hero-mobile-inner">
+          <div class="hero-illus-badge">
+            <span class="hero-dot"></span>
+            Est. 2002 · Now Accepting Registrations
+          </div>
+          <h1 class="hero-mobile-title">
+            Welcome to<br><em>SocietysubidhaHub</em>
+          </h1>
+          <p class="hero-mobile-desc">
+            Connect, collaborate, and thrive together in our modern community hub — smart tools, beautiful spaces, and caring neighbours.
+          </p>
+          <div class="hero-mobile-actions">
+            <a href="#events-mount" class="btn btn-hero-primary">Explore Events ↗</a>
+            <a href="#facility-mount" class="btn btn-hero-mobile-sec">View Facilities</a>
+          </div>
+          <!-- Mini feature pills -->
+          <div class="hero-mobile-pills">
+            <span class="hmp">🏊 18 Facilities</span>
+            <span class="hmp">👨‍👩‍👧 420+ Families</span>
+            <span class="hmp">🔒 24×7 Security</span>
+          </div>
         </div>
       </div>
 
+      <!-- STATS BAR — shown on both desktop and mobile -->
       <div class="hero-stats-bar">
         <div class="hsb-inner">
           <div class="hsb-stat">
@@ -126,7 +168,10 @@
             <div class="chat-msg user">Can I book the community hall?<div class="chat-time">10:04 AM</div></div>
             <div class="chat-msg bot">📅 Sure! Head to the Booking page or contact the office at ext. 100.<div class="chat-time">10:04 AM</div></div>
           </div>
-          
+          <div class="chat-input-row">
+            <input type="text" placeholder="Type your message…" />
+            <button class="chat-send-btn" aria-label="Send">➤</button>
+          </div>
         </div>
       </div>
     </section>
@@ -135,27 +180,52 @@
     <section class="section intro-section">
       <div class="container">
         <div class="intro-grid">
-          <div class="intro-image fade-in">
-            <div class="intro-image" style="padding:0;overflow:hidden;">
-              <img src="../assets/societypic.png" 
-                   alt="New Composting Initiative" 
-                   style="width:100%;height:100%;object-fit:cover;display:block;">
-            </div>
+
+          <!-- Desktop: real image. Hidden on mobile -->
+          <div class="intro-image fade-in intro-image-desktop">
+            <img src="../assets/societypic.png"
+                 alt="SocietysubidhaHub community"
+                 style="width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius-lg);">
             <div class="intro-badge-overlay">
               <div class="num">22+</div>
               <div class="text">Years of community living</div>
             </div>
           </div>
+
+          <!-- Mobile: stat cards replace the image -->
+          <div class="intro-mobile-cards">
+            <div class="imc-card">
+              <div class="imc-icon">🏠</div>
+              <div class="imc-num">420+</div>
+              <div class="imc-label">Families</div>
+            </div>
+            <div class="imc-card">
+              <div class="imc-icon">🏊</div>
+              <div class="imc-num">18</div>
+              <div class="imc-label">Facilities</div>
+            </div>
+            <div class="imc-card">
+              <div class="imc-icon">📅</div>
+              <div class="imc-num">22+</div>
+              <div class="imc-label">Years</div>
+            </div>
+            <div class="imc-card">
+              <div class="imc-icon">🔒</div>
+              <div class="imc-num">24×7</div>
+              <div class="imc-label">Security</div>
+            </div>
+          </div>
+
           <div class="intro-content fade-in fade-in-delay-1">
             <span class="section-tag">About SocietysubidhaHub</span>
             <h2>More Than Just an Address</h2>
             <p>Founded in 2002, SocietysubidhaHub has grown from a small apartment complex into a vibrant, self-sustaining community. We believe in transparency, inclusivity, and making every resident feel at home.</p>
             <div class="intro-points">
-              <div class="intro-point"><div class="check">✓</div> 24/7 Security with CCTV & trained guards</div>
+              <div class="intro-point"><div class="check">✓</div> 24/7 Security with CCTV &amp; trained guards</div>
               <div class="intro-point"><div class="check">✓</div> Dedicated maintenance team on-call</div>
-              <div class="intro-point"><div class="check">✓</div> Monthly community meetings & transparent budgets</div>
+              <div class="intro-point"><div class="check">✓</div> Monthly community meetings &amp; transparent budgets</div>
               <div class="intro-point"><div class="check">✓</div> Green spaces, gardens, and parks for everyone</div>
-              <div class="intro-point"><div class="check">✓</div> Special programmes for children & senior citizens</div>
+              <div class="intro-point"><div class="check">✓</div> Special programmes for children &amp; senior citizens</div>
             </div>
             <a href="#contact-mount" class="btn btn-primary">Get in Touch →</a>
           </div>
@@ -171,7 +241,6 @@
   <div id="news-mount"></div>
   <div id="contact-mount"></div>
   <div id="chat-mount"></div>
-  
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="../js/main.js"></script>
