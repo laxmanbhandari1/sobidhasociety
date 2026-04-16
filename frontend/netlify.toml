@@ -5,7 +5,3 @@
   to = "/pages/index.html"
   status = 200
 
-[[redirects]]
-  from = "/pages/*"
-  to = "/pages/index.html"
-  status = 200
