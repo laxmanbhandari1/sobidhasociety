@@ -1,5 +1,3 @@
-[build]
+
   publish = "frontend"
 
-[[redirects]]
- /pages/*   /pages/index.html   200
